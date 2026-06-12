@@ -27,8 +27,8 @@ public class AdopcionCatalogoController {
         return adopcionCatalogoService.obtenerCatalogoPorUbicacion(ubicacion);
     }
 
-    @GetMapping("/tipo/{tipo}")
-    public List<MascotaCatalogoDTO> obtenerCatalogoPorTipo(@PathVariable String tipo) {
-        return adopcionCatalogoService.obtenerCatalogoPorTipo(tipo);
+    @GetMapping("/especie/{especie}")
+    public List<MascotaCatalogoDTO> obtenerCatalogoPorEspecie(@PathVariable String especie) {
+        return adopcionCatalogoService.obtenerCatalogoPorEspecie(especie);
     }
 }

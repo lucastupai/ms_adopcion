@@ -18,7 +18,7 @@ public class MascotasClient {
 
     public List<MascotaCatalogoDTO> obtenerMascotas() {
         MascotaCatalogoDTO[] mascotas = restTemplate.getForObject(
-                mascotasServiceUrl + "/api/mascotas",
+                mascotasServiceUrl + "/api/mascotas/listar",
                 MascotaCatalogoDTO[].class
         );
 

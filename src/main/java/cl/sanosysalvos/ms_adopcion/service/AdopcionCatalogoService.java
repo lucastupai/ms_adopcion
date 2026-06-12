@@ -16,15 +16,7 @@ public class AdopcionCatalogoService {
     }
 
     public List<MascotaCatalogoDTO> obtenerCatalogoAdopcion() {
-        return mascotasClient.obtenerMascotas()
-                .stream()
-                .filter(mascota -> mascota.getEstado() != null)
-                .filter(mascota ->
-                        mascota.getEstado().equalsIgnoreCase("EN_ADOPCION")
-                                || mascota.getEstado().equalsIgnoreCase("DISPONIBLE_ADOPCION")
-                                || mascota.getEstado().equalsIgnoreCase("DISPONIBLE")
-                )
-                .toList();
+        return mascotasClient.obtenerMascotas();
     }
 
     public List<MascotaCatalogoDTO> obtenerCatalogoPorUbicacion(String ubicacion) {
@@ -35,11 +27,11 @@ public class AdopcionCatalogoService {
                 .toList();
     }
 
-    public List<MascotaCatalogoDTO> obtenerCatalogoPorTipo(String tipo) {
+    public List<MascotaCatalogoDTO> obtenerCatalogoPorEspecie(String especie) {
         return obtenerCatalogoAdopcion()
                 .stream()
-                .filter(mascota -> mascota.getTipo() != null)
-                .filter(mascota -> mascota.getTipo().equalsIgnoreCase(tipo))
+                .filter(mascota -> mascota.getEspecie() != null)
+                .filter(mascota -> mascota.getEspecie().equalsIgnoreCase(especie))
                 .toList();
     }
 }

@@ -4,12 +4,19 @@ public class MascotaCatalogoDTO {
 
     private Long id;
     private String nombre;
-    private String tipo;
-    private String edad;
+    private String especie;
+    private String raza;
+    private String color;
+    private Integer edad;
+    private String contacto;
     private String ubicacion;
+    private String estadoReporte;
     private String descripcion;
-    private String imagen;
-    private String estado;
+    private String reproductivo;
+    private String foto;
+    private String fecha;
+    private Long dueñoId;
+    private String vacunas;
 
     public MascotaCatalogoDTO() {
     }
@@ -22,28 +29,56 @@ public class MascotaCatalogoDTO {
         return nombre;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getEspecie() {
+        return especie;
     }
 
-    public String getEdad() {
+    public String getRaza() {
+        return raza;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Integer getEdad() {
         return edad;
+    }
+
+    public String getContacto() {
+        return contacto;
     }
 
     public String getUbicacion() {
         return ubicacion;
     }
 
+    public String getEstadoReporte() {
+        return estadoReporte;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getReproductivo() {
+        return reproductivo;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getFoto() {
+        return foto;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public Long getDueñoId() {
+        return dueñoId;
+    }
+
+    public String getVacunas() {
+        return vacunas;
     }
 
     public void setId(Long id) {
@@ -54,27 +89,55 @@ public class MascotaCatalogoDTO {
         this.nombre = nombre;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setEspecie(String especie) {
+        this.especie = especie;
     }
 
-    public void setEdad(String edad) {
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
 
+    public void setEstadoReporte(String estadoReporte) {
+        this.estadoReporte = estadoReporte;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setReproductivo(String reproductivo) {
+        this.reproductivo = reproductivo;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDueñoId(Long dueñoId) {
+        this.dueñoId = dueñoId;
+    }
+
+    public void setVacunas(String vacunas) {
+        this.vacunas = vacunas;
     }
 }
