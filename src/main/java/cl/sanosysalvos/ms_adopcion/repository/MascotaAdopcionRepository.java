@@ -12,4 +12,6 @@ public interface MascotaAdopcionRepository extends JpaRepository<MascotaAdopcion
     List<MascotaAdopcion> findByEspecieIgnoreCaseAndEstadoIgnoreCase(String especie, String estado);
 
     List<MascotaAdopcion> findByUbicacionContainingIgnoreCaseAndEstadoIgnoreCase(String ubicacion, String estado);
+    
+    List<MascotaAdopcion> findByContactoIgnoreCaseAndEstadoIgnoreCase(String contacto, String estado);
 }

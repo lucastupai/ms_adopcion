@@ -54,4 +54,22 @@ public class AdopcionCatalogoController {
                 adopcionCatalogoService.obtenerCatalogoPorEspecie(especie)
         );
     }
+
+        @GetMapping("/veterinaria/{contacto}")
+    public ResponseEntity<List<MascotaAdopcion>> obtenerMascotasPorVeterinaria(
+            @PathVariable String contacto
+    ) {
+        return ResponseEntity.ok(
+                adopcionCatalogoService.obtenerMascotasPorContactoVeterinaria(contacto)
+        );
+    }
+
+    @PutMapping("/{id}/adoptada")
+    public ResponseEntity<MascotaAdopcion> marcarMascotaComoAdoptada(
+            @PathVariable Long id
+    ) {
+        return ResponseEntity.ok(
+                adopcionCatalogoService.marcarComoAdoptada(id)
+        );
+    }
 }

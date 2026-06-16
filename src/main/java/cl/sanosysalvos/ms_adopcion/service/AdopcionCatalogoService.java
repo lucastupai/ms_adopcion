@@ -43,4 +43,18 @@ public class AdopcionCatalogoService {
         return mascotaAdopcionRepository
                 .findByEspecieIgnoreCaseAndEstadoIgnoreCase(especie, "DISPONIBLE");
     }
+
+    public List<MascotaAdopcion> obtenerMascotasPorContactoVeterinaria(String contacto) {
+        return mascotaAdopcionRepository
+                .findByContactoIgnoreCaseAndEstadoIgnoreCase(contacto, "DISPONIBLE");
+    }
+
+    public MascotaAdopcion marcarComoAdoptada(Long id) {
+        MascotaAdopcion mascota = mascotaAdopcionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mascota en adopción no encontrada"));
+
+        mascota.setEstado("ADOPTADA");
+
+        return mascotaAdopcionRepository.save(mascota);
+    }
 }
