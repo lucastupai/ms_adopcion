@@ -1,13 +1,14 @@
 package cl.sanosysalvos.ms_adopcion.controller;
 
-import cl.sanosysalvos.ms_adopcion.dto.MascotaAdopcionInfoDTO;
+import cl.sanosysalvos.ms_adopcion.model.MascotaAdopcion;
 import cl.sanosysalvos.ms_adopcion.service.AdopcionCatalogoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/adopcion/catalogo")
+@RequestMapping("/api/adopcion")
 @CrossOrigin(origins = "*")
 public class AdopcionCatalogoController {
 
@@ -17,23 +18,40 @@ public class AdopcionCatalogoController {
         this.adopcionCatalogoService = adopcionCatalogoService;
     }
 
-    @GetMapping
-    public List<MascotaAdopcionInfoDTO> obtenerCatalogoAdopcion() {
-        return adopcionCatalogoService.obtenerCatalogoAdopcion();
+    @PostMapping("/registrar")
+    public ResponseEntity<MascotaAdopcion> registrarMascotaAdopcion(
+            @RequestBody MascotaAdopcion mascotaAdopcion
+    ) {
+        return ResponseEntity.ok(
+                adopcionCatalogoService.registrarMascotaAdopcion(mascotaAdopcion)
+        );
     }
 
-    @GetMapping("/{id}")
-    public MascotaAdopcionInfoDTO obtenerMascotaPorId(@PathVariable Long id) {
-        return adopcionCatalogoService.obtenerMascotaPorId(id);
+    @GetMapping("/catalogo")
+    public ResponseEntity<List<MascotaAdopcion>> obtenerCatalogoAdopcion() {
+        return ResponseEntity.ok(adopcionCatalogoService.obtenerCatalogoAdopcion());
     }
 
-    @GetMapping("/ubicacion/{ubicacion}")
-    public List<MascotaAdopcionInfoDTO> obtenerCatalogoPorUbicacion(@PathVariable String ubicacion) {
-        return adopcionCatalogoService.obtenerCatalogoPorUbicacion(ubicacion);
+    @GetMapping("/catalogo/{id}")
+    public ResponseEntity<MascotaAdopcion> obtenerMascotaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(adopcionCatalogoService.obtenerMascotaPorId(id));
     }
 
-    @GetMapping("/especie/{especie}")
-    public List<MascotaAdopcionInfoDTO> obtenerCatalogoPorEspecie(@PathVariable String especie) {
-        return adopcionCatalogoService.obtenerCatalogoPorEspecie(especie);
+    @GetMapping("/catalogo/ubicacion/{ubicacion}")
+    public ResponseEntity<List<MascotaAdopcion>> obtenerCatalogoPorUbicacion(
+            @PathVariable String ubicacion
+    ) {
+        return ResponseEntity.ok(
+                adopcionCatalogoService.obtenerCatalogoPorUbicacion(ubicacion)
+        );
+    }
+
+    @GetMapping("/catalogo/especie/{especie}")
+    public ResponseEntity<List<MascotaAdopcion>> obtenerCatalogoPorEspecie(
+            @PathVariable String especie
+    ) {
+        return ResponseEntity.ok(
+                adopcionCatalogoService.obtenerCatalogoPorEspecie(especie)
+        );
     }
 }
