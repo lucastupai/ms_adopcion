@@ -20,6 +20,7 @@ public class AdopcionCatalogoService {
     public List<MascotaAdopcionInfoDTO> obtenerCatalogoAdopcion() {
         return mascotasClient.obtenerMascotas()
                 .stream()
+                .filter(this::esMascotaEnAdopcion)
                 .map(this::convertirAFichaInformativa)
                 .toList();
     }
@@ -29,7 +30,7 @@ public class AdopcionCatalogoService {
                 .stream()
                 .filter(mascota -> mascota.getId() != null && mascota.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Mascota no encontrada en el catálogo informativo"));
+                .orElseThrow(() -> new RuntimeException("Mascota no encontrada en el catálogo de adopción"));
     }
 
     public List<MascotaAdopcionInfoDTO> obtenerCatalogoPorUbicacion(String ubicacion) {
@@ -48,7 +49,19 @@ public class AdopcionCatalogoService {
                 .toList();
     }
 
-    private MascotaAdopcionInfoDTO convertirAFichaInformativa(Map<String, Object> datosMascota) {
+    private boolean esMascotaEnAdopcion(Map datosMascota) {
+        String estadoReporte = convertirString(datosMascota.get("estadoReporte"));
+
+        if (estadoReporte == null) {
+            return false;
+        }
+
+        return estadoReporte.equalsIgnoreCase("ADOPCION")
+                || estadoReporte.equalsIgnoreCase("EN_ADOPCION")
+                || estadoReporte.equalsIgnoreCase("EN ADOPCION");
+    }
+
+    private MascotaAdopcionInfoDTO convertirAFichaInformativa(Map datosMascota) {
         MascotaAdopcionInfoDTO dto = new MascotaAdopcionInfoDTO();
 
         dto.setId(convertirLong(datosMascota.get("id")));
@@ -79,6 +92,7 @@ public class AdopcionCatalogoService {
         if (valor == null) {
             return null;
         }
+
         return valor.toString();
     }
 
